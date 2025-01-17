@@ -15,7 +15,7 @@ header("Pragma: no-cache");
 <meta name="keywords" content="MXToolbox, DNS, Blacklist, MX, PHP">
 <meta name="author" content="Helpdesk.ca">
 
-<title> SPFToolbox </title>
+<title> Helpdesk Toolbox </title>
 <meta name="msapplication-TileColor" content="#f04444">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
