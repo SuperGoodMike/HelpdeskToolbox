@@ -10,17 +10,17 @@ header("Pragma: no-cache");
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="SPFtoolbox is a Javascript and PHP app to look up DNS records such as SPF, MX, Whois, and more">
-<meta property="og:description" content="SPFtoolbox is a Javascript and PHP app to look up DNS records such as SPF, MX, Whois, and more" >
-<meta name="keywords" content="Github, Open Source, MXToolbox, DNS, Blacklist, MX, PHP">
-<meta name="author" content="Charles Barnes">
+<meta name="description" content="Helpdesk.ca toolbox is a Javascript and PHP app to look up DNS records such as SPF, MX, Whois, and more">
+<meta property="og:description" content="Helpdesk.ca toolbo is a Javascript and PHP app to look up DNS records such as SPF, MX, Whois, and more" >
+<meta name="keywords" content="MXToolbox, DNS, Blacklist, MX, PHP">
+<meta name="author" content="Helpdesk.ca">
 
 <title> SPFToolbox </title>
-<meta name="msapplication-TileColor" content="#44c0f0">
+<meta name="msapplication-TileColor" content="#f04444">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
-<meta name="apple-mobile-web-app-title" content="SPFToolbox">
-<meta name="theme-color" content="#44c0f0">
+<meta name="apple-mobile-web-app-title" content="Helpdesk Toolbox">
+<meta name="theme-color" content="#f04444">
 
 <link rel="stylesheet" href="libraries/bootstrap/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <link href="styles/style.css" rel="stylesheet">
