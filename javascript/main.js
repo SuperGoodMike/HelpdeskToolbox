@@ -62,18 +62,32 @@ window.onload = function() {
             
             xmlhttp.onreadystatechange = function () {
                 var date = new Date();
-                if (this.readyState == 4 && this.status == 200) {
-                    //Clears the hint field
-                    document.getElementById("txtHint").innerHTML = "";
+                if (this.readyState == 4) {
                     document.getElementById("loading").innerHTML= '';
-                    //parse the response into a JS Object
-                    dnsResp = JSON.parse(this.responseText);        
-                    buildTable(dnsResp, callType);
+                    if (this.status == 200) {
+                        try {
+                            const response = JSON.parse(this.responseText);
+                            buildTable(response, callType);
+                        } catch (e) {
+                            console.error('JSON parse error:', e);
+                            document.getElementById("txtHint").innerHTML = 
+                                '<div class="error">Invalid server response</div>';
+                        }
+                    } else {
+                        console.error('Request failed with status:', this.status);
+                        document.getElementById("txtHint").innerHTML = 
+                            '<div class="error">Request failed (Status: ' + this.status + ')</div>';
+                    }
                 }
             }
             document.getElementById("loading").innerHTML = '<div class="sk-three-bounce"><div class="sk-child sk-bounce1"></div><div class="sk-child sk-bounce2"></div><div class="sk-child sk-bounce3"></div></div>'
-            xmlhttp.open("GET", "operations/?domain=" + domain + "&request=" + callType + "&port=" + port, true);
-            xmlhttp.send();
+            const formData = new FormData();
+            formData.append('target', domain);
+            formData.append('request', callType);
+            formData.append('ports', port);
+            
+            xmlhttp.open("POST", "operations/", true);
+            xmlhttp.send(formData);
             
         }
     }
@@ -96,14 +110,34 @@ window.onload = function() {
 
                 if (i != 0) {$(".responseRow" + (requestNum-1)).append("<Div class = 'responseRow" + requestNum + "'><table></table></div>");}
                 //iterates through object keys
-                if(callType === "blacklist.php"){
-                    for (j = 0, len2 = Object.keys(jsonData).length; j < len2; j++) {  
-                        $(".responseRow" + requestNum + " Table").append("<tr class='twoCol'><td class='left-row'>" + Object.getOwnPropertyNames(jsonData)[j] + ":</td><td>" + jsonData[Object.keys(jsonData)[j]] + "</td></tr>");
-                    }
+                if (callType === "port") {
+                    // Create table header
+                    $(".responseRow" + requestNum + " table").append(`
+                        <tr>
+                            <th>Port</th>
+                            <th>Status</th>
+                            <th>Response Time</th>
+                        </tr>
+                    `);
                     
+                    // Add rows for each port result
+                    jsonResp.forEach(result => {
+                        const statusClass = result.status === 'open' ? 'status-open' : 'status-closed';
+                        $(".responseRow" + requestNum + " table").append(`
+                            <tr>
+                                <td>${result.port}</td>
+                                <td class="${statusClass}">${result.status.toUpperCase()}</td>
+                                <td>${formatResponseTime(result.response_time)}</td>
+                            </tr>
+                        `);
+                    });
+                } else if (callType === "blacklist") {
+                    for (j = 0, len2 = Object.keys(jsonData).length; j < len2; j++) {  
+                        $(".responseRow" + requestNum + " table").append("<tr class='twoCol'><td class='left-row'>" + Object.getOwnPropertyNames(jsonData)[j] + ":</td><td>" + jsonData[Object.keys(jsonData)[j]] + "</td></tr>");
+                    }
                 } else {
                     for (j = 0, len2 = Object.keys(jsonData).length; j < len2; j++) {  
-                        $(".responseRow" + requestNum + " Table").append("<tr class='twoCol'><td class='left-row'>" + Object.getOwnPropertyNames(jsonData)[j] + ":</td><td>" + cleanString(jsonData[Object.keys(jsonData)[j]].toString()) + "</td></tr>");
+                        $(".responseRow" + requestNum + " table").append("<tr class='twoCol'><td class='left-row'>" + Object.getOwnPropertyNames(jsonData)[j] + ":</td><td>" + cleanString(jsonData[Object.keys(jsonData)[j]].toString()) + "</td></tr>");
                     }
                 }
                 requestNum++;
@@ -124,9 +158,20 @@ window.onload = function() {
 }
 
 function showAdditionalFields() {
+    const portContainer = document.getElementById("port-container");
+    const portInput = document.getElementById("port");
+    
     if(document.getElementById("file").value === 'port') {
-        document.getElementById("port-container").style.visibility="visible" ;   
+        portContainer.style.visibility = "visible";
+        portInput.placeholder = "Enter ports (e.g., 80, 443, 1-100)";
+        portInput.pattern = "^[0-9,\\s-]+$";
+        portInput.title = "Enter ports as single, comma-separated, or ranges (e.g., 80,443,8000-8080)";
     } else {
-        document.getElementById("port-container").style.visibility="hidden";  
+        portContainer.style.visibility = "hidden";
+        portInput.value = "";
     }
+}
+
+function formatResponseTime(ms) {
+    return ms ? `${Math.round(ms * 1000)}ms` : 'N/A';
 }
