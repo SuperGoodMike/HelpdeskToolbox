@@ -50,7 +50,8 @@ class Port implements OperationInterface {
             }
             $portArray[] = [
                 "port" => $port,
-                "status" => $status
+                "status" => $status,
+                "protocol" => strtoupper($protocol)
             ];
         }
         return json_encode($portArray);
