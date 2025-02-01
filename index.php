@@ -57,7 +57,7 @@ header("Pragma: no-cache");
                         <span class="form-label">Port:&nbsp;</span><input type="text" name="port" id="port" class="form-control">
                     </div>
                     <div id="submit-container-center">
-                        <input type="button" id="submit" value="submit" class="form-control btn"/>
+                        <input type="button" id="submit" value="submit" class="form-control2 btn"/>
                     </div>
             </div>
         </div>
