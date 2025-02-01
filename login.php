@@ -25,7 +25,7 @@ function authenticate($username, $password) {
         list($user, $pass) = explode(':', trim($line));
         error_log("Checking user: $user");
         if ($user === $username) {
-            if (crypt($password, $pass) == $pass) {
+            if (password_verify($password, $pass)) {
                 error_log("Password match for user: $username");
                 return true;
             } else {
