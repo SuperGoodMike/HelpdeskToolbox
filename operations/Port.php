@@ -32,12 +32,12 @@ class Port implements OperationInterface {
         foreach ($this->ports as $port) {
             $fp = @fsockopen($hostname, $port, $errno, $errstr, 5);
             if ($fp) {
-                $result = 'open';
+                $result = '<span style="color:green; font-weight:bold;">open</span>';
                 fclose($fp);
             } else {
-                $result = 'closed';
+                $result = '<span style="color:red; font-weight:bold;">closed</span>';
             }
-            $portArray .= "\"$port\": \"Is $result\",\n";
+            $portArray .= "\"$port\": \"$result\",\n";
         }
         $result = "[{\n";
         $result .= rtrim($portArray, ",\n");
