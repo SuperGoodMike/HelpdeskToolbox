@@ -33,10 +33,18 @@ class Port implements OperationInterface {
             if ($protocol == 'udp') {
                 $sock = socket_create(AF_INET, SOCK_DGRAM, SOL_UDP);
                 $result = @socket_connect($sock, $hostname, $port);
-                if ($result) {
-                    $status = '<span style="color:green; font-weight:bold;">open</span>';
-                } else {
+                socket_close($sock);
+                
+                // Additional check: send a UDP packet and wait for an ICMP response
+                $sock = socket_create(AF_INET, SOCK_DGRAM, SOL_UDP);
+                socket_sendto($sock, '', 0, 0, $hostname, $port);
+                $read = [$sock]; $write = null; $except = null;
+                $result = @socket_select($read, $write, $except, 2); // wait for 2 seconds
+                
+                if ($result === false || $result === 0) {
                     $status = '<span style="color:red; font-weight:bold;">closed</span>';
+                } else {
+                    $status = '<span style="color:green; font-weight:bold;">open</span>';
                 }
                 socket_close($sock);
             } else {
