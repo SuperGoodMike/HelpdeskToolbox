@@ -27,19 +27,30 @@ class Port implements OperationInterface {
         return $portArray;
     }
 
-    function getOutput($hostname) {
+    function getOutput($hostname, $protocol = 'tcp') {
         $portArray = [];
         foreach ($this->ports as $port) {
-            $fp = @fsockopen($hostname, $port, $errno, $errstr, 5);
-            if ($fp) {
-                $result = '<span style="color:green; font-weight:bold;">open</span>';
-                fclose($fp);
+            if ($protocol == 'udp') {
+                $sock = socket_create(AF_INET, SOCK_DGRAM, SOL_UDP);
+                $result = @socket_connect($sock, $hostname, $port);
+                if ($result) {
+                    $status = '<span style="color:green; font-weight:bold;">open</span>';
+                } else {
+                    $status = '<span style="color:red; font-weight:bold;">closed</span>';
+                }
+                socket_close($sock);
             } else {
-                $result = '<span style="color:red; font-weight:bold;">closed</span>';
+                $fp = @fsockopen($hostname, $port, $errno, $errstr, 5);
+                if ($fp) {
+                    $status = '<span style="color:green; font-weight:bold;">open</span>';
+                    fclose($fp);
+                } else {
+                    $status = '<span style="color:red; font-weight:bold;">closed</span>';
+                }
             }
             $portArray[] = [
                 "port" => $port,
-                "status" => $result
+                "status" => $status
             ];
         }
         return json_encode($portArray);
