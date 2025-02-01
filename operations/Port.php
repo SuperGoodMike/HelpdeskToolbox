@@ -28,7 +28,7 @@ class Port implements OperationInterface {
     }
 
     function getOutput($hostname) {
-        $portArray = "";
+        $portArray = [];
         foreach ($this->ports as $port) {
             $fp = @fsockopen($hostname, $port, $errno, $errstr, 5);
             if ($fp) {
@@ -37,12 +37,12 @@ class Port implements OperationInterface {
             } else {
                 $result = '<span style="color:red; font-weight:bold;">closed</span>';
             }
-            $portArray .= "\"$port\": \"$result\",\n";
+            $portArray[] = [
+                "port" => $port,
+                "status" => $result
+            ];
         }
-        $result = "[{\n";
-        $result .= rtrim($portArray, ",\n");
-        $result .= "\n}]";
-        return $result;
+        return json_encode($portArray);
     }
 }
 ?>
