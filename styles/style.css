@@ -102,6 +102,15 @@ caption {
     text-align: center;
 }
 
+.form-control2 {
+    align-items: center;
+    width:auto;
+    float: left;
+    margin: 10px;
+    text-align: center;
+    font-weight: bold;
+}
+
 .form-label {
     align-items: center;
     width:auto;
