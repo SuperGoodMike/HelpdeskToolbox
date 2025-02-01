@@ -23,8 +23,16 @@ function authenticate($username, $password) {
     $htpasswd = file('/etc/secure/toolbox/.htpasswd');
     foreach ($htpasswd as $line) {
         list($user, $pass) = explode(':', trim($line));
-        if ($user === $username && crypt($password, $pass) == $pass) {
-            return true;
+        error_log("Checking user: $user");
+        if ($user === $username) {
+            if (crypt($password, $pass) == $pass) {
+                error_log("Password match for user: $username");
+                return true;
+            } else {
+                error_log("Password mismatch for user: $username");
+            }
+        } else {
+            error_log("Username mismatch: expected $username, found $user");
         }
     }
     return false;
