@@ -52,31 +52,31 @@ window.onload = function() {
     }
 
     //Get DNS Details
-    function returnDnsDetails(domain, callType, port) {
-        //checks for valid input
-        if (domain.length == 0) {
-            document.getElementById("txtHint").innerHTML = " Please enter a valid domain";
-            return;
-        } else {
-            var xmlhttp = new XMLHttpRequest();
-            
-            xmlhttp.onreadystatechange = function () {
-                var date = new Date();
-                if (this.readyState == 4 && this.status == 200) {
-                    //Clears the hint field
-                    document.getElementById("txtHint").innerHTML = "";
-                    document.getElementById("loading").innerHTML= '';
-                    //parse the response into a JS Object
-                    dnsResp = JSON.parse(this.responseText);        
-                    buildTable(dnsResp, callType);
-                }
+function returnDnsDetails(domain, callType, port) {
+    // checks for valid input
+    if (domain.length == 0) {
+        document.getElementById("txtHint").innerHTML = " Please enter a valid domain";
+        return;
+    } else {
+        var xmlhttp = new XMLHttpRequest();
+        var protocol = document.getElementById("protocol").value; // Get the selected protocol
+        
+        xmlhttp.onreadystatechange = function () {
+            var date = new Date();
+            if (this.readyState == 4 && this.status == 200) {
+                // Clears the hint field
+                document.getElementById("txtHint").innerHTML = "";
+                document.getElementById("loading").innerHTML = '';
+                // parse the response into a JS Object
+                dnsResp = JSON.parse(this.responseText);
+                buildTable(dnsResp, callType);
             }
-            document.getElementById("loading").innerHTML = '<div class="sk-three-bounce"><div class="sk-child sk-bounce1"></div><div class="sk-child sk-bounce2"></div><div class="sk-child sk-bounce3"></div></div>'
-            xmlhttp.open("GET", "operations/?domain=" + domain + "&request=" + callType + "&port=" + port, true);
-            xmlhttp.send();
-            
         }
+        document.getElementById("loading").innerHTML = '<div class="sk-three-bounce"><div class="sk-child sk-bounce1"></div><div class="sk-child sk-bounce2"></div><div class="sk-child sk-bounce3"></div></div>';
+        xmlhttp.open("GET", "operations/?domain=" + domain + "&request=" + callType + "&port=" + port + "&protocol=" + protocol, true);
+        xmlhttp.send();
     }
+}
 
 function buildTable(jsonResp, callType) {
     var requestNum = Date.now();
