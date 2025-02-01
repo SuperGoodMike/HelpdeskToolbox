@@ -21,5 +21,9 @@ Originally Created by **[Charles Barnes](http://charlesabarnes.com)**
 
 - On your PHP webserver git clone the repo
 - Extract the contents of the zip file to your desired directory.
-- Navigate to index.html
+- Create a user for login
+``` bash
+htpasswd -B /etc/secure/toolbox/.htpasswd admin
+```
+- Navigate to index.php
 - Enter the domain you want info about and submit!
