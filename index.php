@@ -47,7 +47,7 @@ header("Pragma: no-cache");
                             <option value="dmarc">DMARC</option>
                             <option value="blacklist">Blacklist Check</option>
                             <option value="whois">Whois</option>
-                            <option value="port">Check If Port Open/Forwarded</option>
+                            <option value="port">Check If Ports Are Open/Forwarded</option>
                             <option value="hinfo">Hinfo/Get Hardware Information</option>
                             <option value="all">Get All Simple DNS Records</option>
                             <option value="reverseLookup">Host By IP/Reverse Lookup</option>
@@ -56,7 +56,7 @@ header("Pragma: no-cache");
                     <div style="visibility: hidden" id="port-container">
                         <span class="form-label">Port:&nbsp;</span><input type="text" name="port" id="port" class="form-control">
                     </div>
-                    <div id="submit-container">
+                    <div id="submit-container-center">
                         <input type="button" id="submit" value="submit" class="form-control btn"/>
                     </div>
             </div>
