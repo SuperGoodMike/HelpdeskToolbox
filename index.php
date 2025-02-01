@@ -31,12 +31,14 @@ header("Pragma: no-cache");
     <div class="container">
         <div class="row" id="top-row">
             <div class="col-md-12">
-                <H1 class="logo"><Span class = "logo-style1">Helpdesk</Span>Toolbox</H1>
+                <center><H1 class="logo"><Span class = "logo-style1">Helpdesk</Span>Toolbox</H1></center>
             </div>
         </div>
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                     <div id="domain-container">
+                        <br/>
+                        <br/>
                         <span class="form-label">Domain:&nbsp;</span>
                         <input type="text" name="domain" id="domain" class="form-control">
                         <select onchange="showAdditionalFields()" id="file" class="form-control">
