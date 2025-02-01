@@ -47,14 +47,14 @@ header("Pragma: no-cache");
                             <option value="dmarc">DMARC</option>
                             <option value="blacklist">Blacklist Check</option>
                             <option value="whois">Whois</option>
-                            <option value="port">Check If Ports Are Open/Forwarded</option>
+                            <option value="port">Check Ports: Open/Closed</option>
                             <option value="hinfo">Hinfo/Get Hardware Information</option>
                             <option value="all">Get All Simple DNS Records</option>
                             <option value="reverseLookup">Host By IP/Reverse Lookup</option>
                         </select>
                     </div>
                     <div style="visibility: hidden" id="port-container">
-                        <span class="form-label">Port:&nbsp;</span><input type="text" name="port" id="port" class="form-control">
+                        <span class="form-label">Port/Ports:&nbsp;</span><input type="text" name="port" id="port" class="form-control">
                     </div>
                     <div id="submit-container-center">
                         <input type="button" id="submit" value="submit" class="form-control2 btn"/>
@@ -66,8 +66,6 @@ header("Pragma: no-cache");
                 <span id="txtHint" style="color: red;"></span>
                 <div id="loading">
                 <div class="info">
-                <h3>About Helpdesk Toolbox</h3>
-                <span>Helpdesk Toolbox was created to be an easy way to get information about a domain. Please click the link in the top right to let me know if you have any questions or suggestions for the app.</span>
                 <br/>
                 <br/>
                 <br/>
@@ -105,8 +103,8 @@ header("Pragma: no-cache");
                             <td>This information gets whois information to see who possibly owns the domain.</td>
                         </tr>
                         <tr>
-                            <td>Check If Port Open/Forwarded</td>
-                            <td>You are able to Check if a specified port on a domain or IP address is open for use such as hosting</td>
+                            <td>Check Ports: Open/Closed</td>
+                            <td>You are able to check if a port (22), ports (22,23,80), or a range (22-25) on a domain or IP address are open or closed</td>
                         </tr>
                         <tr>
                             <td>Hinfo/Get Hardware Information</td>
