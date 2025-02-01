@@ -13,9 +13,9 @@ Originally Created by **[Charles Barnes](http://charlesabarnes.com)**
 - Get Hardware Information
 - Get All Simple DNS Records
 
-* **Install manually**
+## Install manually
 
-1. On your PHP webserver in web root git clone the repo
-2. Extract the contents of the zip file to your desired directory.
-4. Navigate to index.html
-5. Enter the domain you want info about and submit!
+- On your PHP webserver git clone the repo
+- Extract the contents of the zip file to your desired directory.
+- Navigate to index.html
+- Enter the domain you want info about and submit!
