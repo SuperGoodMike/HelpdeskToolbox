@@ -78,40 +78,26 @@ window.onload = function() {
         }
     }
 
-    function buildTable(jsonResp, callType) {
-        var requestNum = Date.now();
-        if (jsonResp.length == 0) {
-            $(".responseTable").prepend("<div class = 'responseRow" + requestNum + "'><table></table></div>");
-            $(".responseRow" + requestNum + " Table").append("<tr><td colspan='2' class='thead'>" + requestTitle(callType) + "</td></tr>");
-            $(".responseRow" + requestNum + " Table").append("<tr><td colspan='2' style='text-align:center'>NO DATA FOUND</td></tr>");
-        } else {
+function buildTable(jsonResp, callType) {
+    var requestNum = Date.now();
+    if (jsonResp.length == 0) {
+        $(".responseTable").prepend("<div class = 'responseRow" + requestNum + "'><table></table></div>");
+        $(".responseRow" + requestNum + " Table").append("<tr><td colspan='2' class='thead'>" + requestTitle(callType) + "</td></tr>");
+        $(".responseRow" + requestNum + " Table").append("<tr><td colspan='2' style='text-align:center'>NO DATA FOUND</td></tr>");
+    } else {
+        $(".responseTable").prepend("<div class = 'responseRow" + requestNum + "'><table></table></div>");
+        $(".responseRow" + requestNum + " Table").append("<tr><td colspan='2' class='thead'>" + requestTitle(callType) + "</td></tr>");
 
-            //creates thes the table to store the response details each table has a unique class
-            $(".responseTable").prepend("<div class = 'responseRow" + requestNum + "'><table></table></div>");
-            //Creates title bar
-            $(".responseRow" + requestNum + " Table").append("<tr><td colspan='2' class='thead'>" + requestTitle(callType) + "</td></tr>");
-
-            for (i = 0, len = jsonResp.length; i < len; i++) {
-                var jsonData = jsonResp[i];
-
-                if (i != 0) {$(".responseRow" + (requestNum-1)).append("<Div class = 'responseRow" + requestNum + "'><table></table></div>");}
-                //iterates through object keys
-                if(callType === "blacklist.php"){
-                    for (j = 0, len2 = Object.keys(jsonData).length; j < len2; j++) {  
-                        $(".responseRow" + requestNum + " Table").append("<tr class='twoCol'><td class='left-row'>" + Object.getOwnPropertyNames(jsonData)[j] + ":</td><td>" + jsonData[Object.keys(jsonData)[j]] + "</td></tr>");
-                    }
-                    
-                } else {
-                    for (j = 0, len2 = Object.keys(jsonData).length; j < len2; j++) {  
-                        $(".responseRow" + requestNum + " Table").append("<tr class='twoCol'><td class='left-row'>" + Object.getOwnPropertyNames(jsonData)[j] + ":</td><td>" + cleanString(jsonData[Object.keys(jsonData)[j]].toString()) + "</td></tr>");
-                    }
+        for (var i = 0; i < jsonResp.length; i++) {
+            var jsonData = jsonResp[i];
+            for (var key in jsonData) {
+                if (jsonData.hasOwnProperty(key)) {
+                    $(".responseRow" + requestNum + " Table").append("<tr class='twoCol'><td class='left-row'>" + key + ":</td><td>" + jsonData[key] + "</td></tr>");
                 }
-                requestNum++;
             }
-
         }
     }
-
+}
     function cleanString(data) {
         return data
             .replace(/&/g, "&amp;")
