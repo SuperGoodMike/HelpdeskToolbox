@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 
 function authenticate($username, $password) {
-    $htpasswd = file('/etc/secure/ip-api/.htpasswd');
+    $htpasswd = file('/etc/secure/toolbox/.htpasswd');
     foreach ($htpasswd as $line) {
         list($user, $pass) = explode(':', trim($line));
         if ($user === $username && crypt($password, $pass) == $pass) {
