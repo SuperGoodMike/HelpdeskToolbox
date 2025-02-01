@@ -9,9 +9,13 @@ Originally Created by **[Charles Barnes](http://charlesabarnes.com)**
 - DMARC
 - Blacklist Check
 - Whois
-- Check Ports: Open/Closed (Single (22) Multiple (22,443,80) Range (1-1024))
 - Get Hardware Information
 - Get All Simple DNS Records
+- Check Ports: Open/Closed
+  - Single (22)
+  -  Multiple (22,443,80)
+  -  Range (1-1024)
+  -  Choose TCP or UDP
 
 ## Install manually
 
