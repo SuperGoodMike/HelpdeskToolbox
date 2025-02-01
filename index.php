@@ -75,47 +75,47 @@ header("Pragma: no-cache");
                             <th>Description</th>
                         </tr>
                         <tr>
-                            <td>IP/Get A Record</td>
+                            <th>IP/Get A Record</th>
                             <td>An A Record is used to associate a domain name with an IP(v4) address. This query checks for the A records set on the domain</td>
                         </tr>
                         <tr>
-                            <td>IPV6/Get AAAA Record</td>
+                            <th>IPV6/Get AAAA Record</th>
                             <td>An AAAA Record is used to associate a domain name with an IP(v6) address. This query checks for the AAAA records set on the domain</td>
                         </tr>
                         <tr>
-                            <td>Mx/Get MX Record</td>
+                            <th>Mx/Get MX Record</th>
                             <td>MX stands for Mail Exchanger.  This query is used to get the mail server used for accepting emails on the specified domain.</td>
                         </tr>
                         <tr>
-                            <td>SPF/TXT</td>
+                            <th>SPF/TXT</th>
                             <td>A SPF Record is used to indicate which email hosts is authorized to send mail on the specified domain's behalf.  This query is used to get the authorized domains</td>
                         </tr>
                         <tr>
-                            <td>DMARC</td>
+                            <th>DMARC</th>
                             <td>A DMARC Record is used to authenticate email From: addresses and defines policies on where to report both authorized and unauthorized mailflow</td>
                         </tr>
                         <tr>
-                            <td>Blacklist Check</td>
+                            <th>Blacklist Check</th>
                             <td>This query is used to check if the specified domain is on any of the most well known email blacklist sites.  If a domain is on a blacklist the row will return a fail result.</td>
                         </tr>
                         <tr>
-                            <td>Whois</td>
+                            <th>Whois</td>
                             <td>This information gets whois information to see who possibly owns the domain.</td>
                         </tr>
                         <tr>
-                            <td>Check Ports: Open/Closed</td>
+                            <th>Check Ports: Open/Closed</th>
                             <td>You are able to check if a port (22), ports (22,23,80), or a range (22-25) on a domain or IP address are open or closed</td>
                         </tr>
                         <tr>
-                            <td>Hinfo/Get Hardware Information</td>
+                            <th>Hinfo/Get Hardware Information</th>
                             <td>If available, this query gets the hardware information of the server for the specified hostname</td>
                         </tr>
                         <tr>
-                            <td>Get All Simple DNS Records</td>
+                            <th>Get All Simple DNS Records</th>
                             <td>This query attemps to do a request for all of the available DNS information for the specified hostname.  This is not always successfull as some providers block the request.</td>
                         </tr>
                         <tr>
-                            <td>Host By IP/Reverse Lookup</td>
+                            <th>Host By IP/Reverse Lookup</th>
                             <td>The query attempts to find a hostname associated with an IP address</td>
                         </tr>
                     </table>
